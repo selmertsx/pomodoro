@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2018_06_26_111310) do
     t.integer "pomodoro_task_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["pomodoro_task_id"], name: "index_pomodoro_memos_on_pomodoro_task_id"
   end
 
   create_table "pomodoro_tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
@@ -24,6 +25,7 @@ ActiveRecord::Schema.define(version: 2018_06_26_111310) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_pomodoro_tasks_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|

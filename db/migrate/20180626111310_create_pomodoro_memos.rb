@@ -3,7 +3,7 @@ class CreatePomodoroMemos < ActiveRecord::Migration[5.2]
     create_table :pomodoro_memos do |t|
       t.text :memo
       t.integer :pomodoro_task_id
-
+      t.index :pomodoro_task_id
       t.timestamps
     end
   end
