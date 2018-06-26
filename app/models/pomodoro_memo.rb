@@ -1,0 +1,2 @@
+class PomodoroMemo < ApplicationRecord
+end

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Memo:</strong>
+  <%= @pomodoro_memo.memo %>
+</p>
+
+<p>
+  <strong>Pomodoro task:</strong>
+  <%= @pomodoro_memo.pomodoro_task_id %>
+</p>
+
+<%= link_to 'Edit', edit_pomodoro_memo_path(@pomodoro_memo) %> |
+<%= link_to 'Back', pomodoro_memos_path %>
