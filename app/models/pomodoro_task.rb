@@ -1,0 +1,2 @@
+class PomodoroTask < ApplicationRecord
+end

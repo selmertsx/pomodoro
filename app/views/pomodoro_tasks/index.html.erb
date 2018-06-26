@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pomodoro Tasks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Objective</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pomodoro_tasks.each do |pomodoro_task| %>
+      <tr>
+        <td><%= pomodoro_task.objective %></td>
+        <td><%= pomodoro_task.user_id %></td>
+        <td><%= link_to 'Show', pomodoro_task %></td>
+        <td><%= link_to 'Edit', edit_pomodoro_task_path(pomodoro_task) %></td>
+        <td><%= link_to 'Destroy', pomodoro_task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pomodoro Task', new_pomodoro_task_path %>
