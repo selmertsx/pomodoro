@@ -10,5 +10,8 @@
 #
 
 class User < ApplicationRecord
+  validates :name, presence :true
+  validates :email
+
   has_many :pomodoro_tasks, dependent: :destroy
 end

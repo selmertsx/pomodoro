@@ -10,5 +10,8 @@
 #
 
 class PomodoroTask < ApplicationRecord
+  validates :objective, presence :true
+
   belongs_to :user
+  has_many :pomodoro_memos
 end
