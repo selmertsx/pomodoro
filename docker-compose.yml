@@ -1,0 +1,26 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.6
+    environment:
+      - MYSQL_DATABASE=pomodoro_development
+      - MYSQL_USER=root
+    volumes:
+      - ./mysql/volumes:/var/lib/mysql
+      - ./mysql/conf:/etc/mysql/conf.d
+    ports:
+      - "3306:3306"
+
+  application:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      RAILS_ENV: development
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/application
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
