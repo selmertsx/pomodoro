@@ -5,6 +5,7 @@ services:
     environment:
       - MYSQL_DATABASE=pomodoro_development
       - MYSQL_USER=root
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     volumes:
       - ./mysql/volumes:/var/lib/mysql
       - ./mysql/conf:/etc/mysql/conf.d
@@ -19,7 +20,7 @@ services:
       RAILS_ENV: development
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     volumes:
-      - .:/application
+      - .:/pomodoro
     ports:
       - "3000:3000"
     depends_on:
