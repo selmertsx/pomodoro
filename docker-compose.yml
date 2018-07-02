@@ -38,5 +38,14 @@ services:
     links:
       - db
 
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+    volumes:
+      - rails
+    depends_on:
+      - rails
+
 volumes:
   db:
