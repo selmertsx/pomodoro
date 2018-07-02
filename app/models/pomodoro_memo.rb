@@ -10,7 +10,7 @@
 #
 
 class PomodoroMemo < ApplicationRecord
-  validates :memo, presence :true
+  validates :memo, presence: true
 
   belongs_to :pomodoro_task
 end
