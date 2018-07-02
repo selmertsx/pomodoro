@@ -22,12 +22,14 @@ services:
     volumes:
       - db:/var/lib/mysql
 
-  rails:
+  app:
     build:
       context: .
       dockerfile: Dockerfile
     environment:
       RAILS_ENV: development
+    container_name: pomodoro-app
+    image: pomodoro-app
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     volumes:
       - .:/pomodoro
@@ -38,12 +40,14 @@ services:
     links:
       - db
 
-  nginx:
+  web:
     build: ./nginx
+    container_name: pomodoro-web
+    image: pomodoro-web
     ports:
       - 80:80
     depends_on:
-      - rails
+      - app
 
 volumes:
   db:
