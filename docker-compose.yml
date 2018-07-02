@@ -22,7 +22,7 @@ services:
     volumes:
       - db:/var/lib/mysql
 
-  application:
+  rails:
     build:
       context: .
       dockerfile: Dockerfile
