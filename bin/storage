@@ -1,0 +1,21 @@
+#!/bin/sh
+
+CMDDIR="$(dirname "$(perl -e 'use Cwd "abs_path";print abs_path(shift)' "$0")")"
+
+case "${1:-}" in
+  clean)  shift 1; exec "$CMDDIR/storage-clean"  "$@";;
+  import) shift 1; exec "$CMDDIR/storage-import" "$@";;
+  export) shift 1; exec "$CMDDIR/storage-export" "$@";;
+
+  *)
+    echo 'Usage: storage <subcommand> [<args>]'
+    echo
+    echo 'Subcommands of storage are:'
+    echo '  clean:  ローカルの./storage/dataディレクトリを空にします'
+    echo '  export: 起動中のコンテナのデータをローカルの./storage/dataに出力します'
+    echo '  import: ローカルの./storage/*.sql を起動中のコンテナにimportします'
+    echo
+    echo 'Dependencies:'
+    echo '  このコマンドはdirenv( https://github.com/direnv/direnv )の機能を利用してdocker image切り替えを行います'
+    ;;
+esac
