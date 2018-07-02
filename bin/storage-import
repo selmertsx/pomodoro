@@ -3,4 +3,4 @@ cd "$(dirname "$(perl -e 'use Cwd "abs_path";print abs_path(shift)' $0)")"
 cd ../storage
 
 dumpfile=`find . -name '*.sql'`
-mysql -h 127.0.0.1 -P 33306 -u root nurikae_development < $dumpfile
+mysql -h 127.0.0.1 -P 3306 -u root nurikae_development < $dumpfile

@@ -1,17 +1,26 @@
 version: '3'
 services:
+  storage:
+    build: ./storage
+    container_name: pomodoro-storage
+    image: pomodoro-storage
+    volumes:
+      - db:/var/lib/mysql
+
   db:
     build: ./db
+    container_name: pomodoro-db
     image: pomodoro-db
     environment:
       - MYSQL_DATABASE=pomodoro_development
       - MYSQL_USER=root
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-    volumes:
-      - ./mysql/volumes:/var/lib/mysql
-      - ./mysql/conf:/etc/mysql/conf.d
+    depends_on:
+      - storage
     ports:
-      - "3306:3306"
+      - 3306:3306
+    volumes:
+      - db:/var/lib/mysql
 
   application:
     build:
@@ -23,6 +32,11 @@ services:
     volumes:
       - .:/pomodoro
     ports:
-      - "3000:3000"
+      - 3000:3000
     depends_on:
       - db
+    links:
+      - db
+
+volumes:
+  db:
