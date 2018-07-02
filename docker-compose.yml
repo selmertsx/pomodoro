@@ -42,8 +42,6 @@ services:
     build: ./nginx
     ports:
       - 80:80
-    volumes:
-      - rails
     depends_on:
       - rails
 
