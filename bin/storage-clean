@@ -1,0 +1,7 @@
+#!/bin/bash
+cd "$(dirname "$(perl -e 'use Cwd "abs_path";print abs_path(shift)' $0)")"
+cd ../storage
+
+rm -rf ./data
+
+mkdir -p data/var/lib/mysql
