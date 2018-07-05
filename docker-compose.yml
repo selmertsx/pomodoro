@@ -1,14 +1,14 @@
 version: '3'
 services:
   storage:
-    build: ./storage
+    build: ./docker/storage
     container_name: pomodoro-storage
     image: pomodoro-storage
     volumes:
       - db:/var/lib/mysql
 
   db:
-    build: ./db
+    build: ./docker/db
     container_name: pomodoro-db
     image: pomodoro-db
     environment:
@@ -25,7 +25,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: DockerfileRails
     environment:
       RAILS_ENV: development
     container_name: pomodoro-app
