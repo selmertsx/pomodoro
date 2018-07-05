@@ -1,24 +1,8 @@
-# README
+# pomodoro
+## nginxの設定変更
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```
+# nginxの設定reload
+docker exec -it pomodoro-web /usr/sbin/nginx -s reload
+```
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
