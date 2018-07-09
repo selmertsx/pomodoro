@@ -1,8 +1,8 @@
 local opts = {
   redirect_uri_path = "/",
-  discovery = "xxx",
-  client_id = "xxx",
-  client_secret = "xxx",
+  discovery = os.getenv("DISCOVERY"),
+  client_id = os.getenv("CLIENT_ID"),
+  client_secret = os.getenv("CLIENT_SECRET"),
 }
 
 local res, err = require("resty.openidc").authenticate(opts)
