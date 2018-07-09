@@ -44,6 +44,8 @@ services:
     build: ./docker/nginx
     container_name: pomodoro-web
     image: pomodoro-web
+    env_file:
+      - ./nginx_settings.env
     volumes:
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
       - ./docker/nginx/src:/usr/local/openresty/nginx/src

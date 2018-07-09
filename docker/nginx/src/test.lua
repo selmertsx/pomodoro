@@ -1,8 +1,8 @@
 local opts = {
-  redirect_uri_path = ""
-  discovery = ""
-  client_id = ""
-  client_secret = ""
+  redirect_uri_path = "/",
+  discovery = "xxx",
+  client_id = "xxx",
+  client_secret = "xxx",
 }
 
 local res, err = require("resty.openidc").authenticate(opts)
