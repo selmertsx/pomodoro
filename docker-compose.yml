@@ -46,6 +46,7 @@ services:
     image: pomodoro-web
     volumes:
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./docker/nginx/src:/usr/local/openresty/nginx/src
     ports:
       - 8080:80
     depends_on:
