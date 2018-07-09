@@ -1,6 +1,6 @@
 local http = require "resty.http"
 local httpc = http.new()
-local res, err = httpc:request_uri("http://selmertsx.hatenablog.com/", {
+local res, err = httpc:request_uri("https://www.google.co.jp/", {
   method = "GET",
   headers = {
     ["Content-Type"] = "application/x-www-form-urlencoded",
