@@ -49,6 +49,7 @@ services:
     volumes:
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
       - ./docker/nginx/src:/usr/local/openresty/nginx/src
+      - ./docker/nginx/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
     ports:
       - 8080:80
     depends_on:
