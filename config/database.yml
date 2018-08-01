@@ -5,7 +5,7 @@ default: &default
   charset: utf8mb4
   collation: utf8mb4_general_ci
   pool: 3
-  host: <%= ENV['HOST'] %>
+  host: db
   database: pomodoro
   username: root
   password: ''
