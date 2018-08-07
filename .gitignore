@@ -254,3 +254,8 @@ bh_unicode_properties.cache
 GitHub.sublime-settings
 
 vendor/bundle
+/public/packs
+/public/packs-test
+/node_modules
+yarn-debug.log*
+.yarn-integrity
