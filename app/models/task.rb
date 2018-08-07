@@ -11,6 +11,5 @@
 
 class Task < ApplicationRecord
   validates :objective, presence: true
-
   belongs_to :user
 end
