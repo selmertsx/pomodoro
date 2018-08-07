@@ -9,9 +9,8 @@
 #  updated_at :datetime         not null
 #
 
-class PomodoroTask < ApplicationRecord
+class Task < ApplicationRecord
   validates :objective, presence: true
 
   belongs_to :user
-  has_many :pomodoro_memos
 end
