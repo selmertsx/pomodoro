@@ -259,3 +259,6 @@ vendor/bundle
 /node_modules
 yarn-debug.log*
 .yarn-integrity
+
+
+.idea
