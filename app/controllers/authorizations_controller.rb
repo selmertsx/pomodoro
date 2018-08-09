@@ -1,4 +1,4 @@
-class AuthorizationController < ApplicationController
+class AuthorizationsController < ApplicationController
 
   def new
     redirect_to authz.authorization_uri(new_state, new_nonce)
