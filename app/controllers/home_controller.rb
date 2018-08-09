@@ -6,4 +6,7 @@ class HomeController < ApplicationController
   include ActionView::Layouts
 
   layout 'application'
+
+  def index
+  end
 end
