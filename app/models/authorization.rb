@@ -71,7 +71,6 @@ class Authorization
     if jwks_uri
       header = JSON.parse(Base64.decode64(id_token.split('.').first)).with_indifferent_access
       kid = header[:kid]
-      binding.pry
       OpenIDConnect::ResponseObject::IdToken.decode id_token, public_keys_with_kid[kid]
     end
   end
