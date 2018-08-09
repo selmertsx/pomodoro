@@ -4,10 +4,14 @@ class Authorization < ActiveModelBase
     :identifier,
     :jwks_uri,
     :authorization_endpoint,
-    :redirect_uri,
-
+    :redirect_uri
 
   def initialize()
+    issuer = Rails.application.credentials.oidc[:issuer]
+    identifier = Rails.application.credentials.oidc[:identifier]
+    jwks_uri = Rails.application.credentials.oidc[:jwks_uri]
+    authorization_endpoint = Rails.application.credentials.oidc[:authorization_endpoint]
+    redirect_uri = Rails.application.credentials.oidc[:redirect_uri]
   end
 
   def authorization_uri(state, nonce)
@@ -20,6 +24,24 @@ class Authorization < ActiveModelBase
         nonce: nonce,
         scope: [:openid, :email, :profile].collect(&:to_s)
     )
+  end
+
+  private
+
+  def client
+    @client ||= OpenIDConnect::Client.new member_to_json
+  end
+
+  def member_to_json
+    [:issuer,
+     :identifier,
+     :jwks_uri,
+     :authorization_endpoint
+    ].inject({}) do |hash, key|
+      hash.merge!(
+          key => self.send(key)
+      )
+    end
   end
 end
 
