@@ -4,6 +4,9 @@ class AuthorizationsController < ApplicationController
     redirect_to authz.authorization_uri(new_state, new_nonce)
   end
 
+  def callback
+  end
+
   def create
   end
 
