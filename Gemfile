@@ -6,6 +6,7 @@ ruby '2.5.1'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'jbuilder', '~> 2.5'
 gem 'mysql2', '>= 0.3.18', '< 0.6.0'
+gem 'openid_connect'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.0'
 gem 'turbolinks', '~> 5'
