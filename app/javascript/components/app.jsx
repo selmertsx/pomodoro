@@ -4,36 +4,48 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      tasks: []
+      tasks: [],
+      isLoading: true
     };
   }
 
   componentDidMount() {
+    console.log("component did mount");
     const request = new Request('/api/tasks', {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json'
       })
     });
-
     fetch(request).then((response) => {
       return response.json();
-    }).then((tasks) => {
-      this.setState({tasks});
+    }).then((json) => {
+      console.log("set state");
+      this.setState({
+        tasks: json.tasks,
+        isLoading: false
+      });
     })
   }
 
+  componentWillUnmount(){
+    console.log("component will unmount");
+  }
+
   render() {
-    const { tasks } = this.state;
+    if (this.state.isLoading) {
+      return <p>loading . . . </p>;
+    }
+
     return (
       <div>
         <ul>
           {
-            tasks.map((task) => {
-              return (
-                <li> {task.name} </li>
-              );
-            })
+            this.state.tasks.map((task) => (
+              <li>
+                hoge
+              </li>
+            ))
           }
         </ul>
       </div>
