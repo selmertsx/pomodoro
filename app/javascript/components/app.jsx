@@ -43,7 +43,7 @@ class App extends React.Component {
           {
             this.state.tasks.map((task) => (
               <li>
-                hoge
+                task
               </li>
             ))
           }
