@@ -16,8 +16,7 @@ req.setRequestHeader('X-CSRF-Token', token);
 req.onreadystatechange = function (e) {
   if (req.readyState == 4) {
     if (req.status == 200) {
-      window.location = '//'
-        + window.location.host + '/after_login'
+      console.log("success!!");
     }
     else if (req.status == 400) {
       alert('There was an error processing the token')
