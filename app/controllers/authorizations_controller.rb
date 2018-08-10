@@ -8,12 +8,11 @@ class AuthorizationsController < ApplicationController
   end
 
   def create
-    unless authz.validate(params, stored_state, stored_nonce)
-      render :nothing => true, :status => 400 and return
-    end
-    binding.pry
-    session[:identifier] = get_identifier(authz.oidc.user_info)
-    render status: :success
+    id_token = authz.decode_id_token(params)
+    id_token.verify!(issuer: authz.issuer, client_id: authz.identifier, nonce: stored_nonce)
+    session[:identifier] = id_token.subject
+
+    render json: id_token.raw_attributes, status: :success
   end
 
   private
