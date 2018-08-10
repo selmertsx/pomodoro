@@ -38,8 +38,4 @@ class AuthorizationsController < ApplicationController
   def stored_state
     session[:state]
   end
-
-  def get_identifier(user_info)
-    return user_info.email
-  end
 end
