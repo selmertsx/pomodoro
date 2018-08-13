@@ -29,13 +29,11 @@ class AuthorizationsController < ApplicationController
     session[:nonce] = SecureRandom.hex(16)
   end
 
-  # TODO: validateの実装が終わった後に、session[:nonce].delete と置き換える
   def stored_nonce
-    session[:nonce]
+    session[:nonce].delete
   end
 
-  # TODO: validateの実装が終わった後に、session[:state].delete と置き換える
   def stored_state
-    session[:state]
+    session[:state].delete
   end
 end
