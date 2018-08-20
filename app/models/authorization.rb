@@ -13,12 +13,11 @@ class Authorization
 
   def authorization_uri(state, nonce)
     client.redirect_uri ||= redirect_uri
-    response_type = %i[id_token token]
     client.authorization_uri(
-      response_type: response_type.collect(&:to_s),
+      response_type: 'id_token',
       state: state,
       nonce: nonce,
-      scope: %i[openid email profile].collect(&:to_s)
+      scope: %w[openid email profile]
     )
   end
 
