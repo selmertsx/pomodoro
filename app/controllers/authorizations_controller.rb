@@ -10,8 +10,8 @@ class AuthorizationsController < ApplicationController
   def create
     id_token = authz.decode_id_token(id_token_fragment)
     id_token.verify!(
-      issuer: authz.issuer,
-      client_id: authz.identifier,
+      issuer: Authorization::ISSUER,
+      client_id: Authorization::IDENTIFIER,
       nonce: stored_nonce
     )
 
