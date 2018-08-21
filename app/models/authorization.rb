@@ -28,7 +28,7 @@ class Authorization
   end
 
   def verify!(jwt_string, nonce)
-    id_token = OpenIDConnect::ResponseObject::IdToken.decode(jwt_string, jwk_json)
+    id_token = decode_jwt_string(jwt_string)
     id_token.verify!(
       issuer: ISSUER,
       client_id: IDENTIFIER,
@@ -38,6 +38,10 @@ class Authorization
   end
 
   private
+
+  def decode_jwt_string(jwt_string)
+    OpenIDConnect::ResponseObject::IdToken.decode(jwt_string, jwk_json)
+  end
 
   def jwk_json
     @jwks ||= JSON.parse(
