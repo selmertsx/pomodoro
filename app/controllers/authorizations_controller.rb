@@ -8,13 +8,11 @@ class AuthorizationsController < ApplicationController
   end
 
   def create
-    id_token = authz.decode_id_token(id_token_fragment)
-    id_token.verify!(
-      issuer: Authorization::ISSUER,
-      client_id: Authorization::IDENTIFIER,
-      nonce: stored_nonce
-    )
+    if stored_state != fragment_params[:state]
+      return render status: :unauthorized
+    end
 
+    id_token = authz.verify!(fragment_params[:id_token], stored_nonce)
     session[:identifier] = id_token.subject
     render json: id_token.raw_attributes, status: :ok
   end
@@ -41,7 +39,7 @@ class AuthorizationsController < ApplicationController
     session.delete(:state)
   end
 
-  def id_token_fragment
-    params.permit(:id_token)
+  def fragment_params
+    params.permit(:id_token, :state)
   end
 end
