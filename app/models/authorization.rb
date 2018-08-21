@@ -27,8 +27,14 @@ class Authorization
     )
   end
 
-  def decode_id_token(fragment)
-    OpenIDConnect::ResponseObject::IdToken.decode fragment['id_token'], jwk_json
+  def verify!(jwt_string, nonce)
+    id_token = OpenIDConnect::ResponseObject::IdToken.decode(jwt_string, jwk_json)
+    id_token.verify!(
+      issuer: ISSUER,
+      client_id: IDENTIFIER,
+      nonce: nonce
+    )
+    id_token
   end
 
   private
@@ -37,6 +43,7 @@ class Authorization
     @jwks ||= JSON.parse(
       OpenIDConnect.http_client.get_content(JWKS_URI)
     ).with_indifferent_access
+
     JSON::JWK::Set.new @jwks[:keys]
   end
 end
