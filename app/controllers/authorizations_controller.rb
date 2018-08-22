@@ -1,5 +1,8 @@
 class AuthorizationsController < ApplicationController
 
+  # TODO:
+  # セッションの取扱いをもっとセキュアにする
+  # http://openid.net/specs/openid-connect-session-1_0.html
   def new
     redirect_to authz.authorization_uri(new_state, new_nonce)
   end
@@ -13,7 +16,7 @@ class AuthorizationsController < ApplicationController
     end
 
     id_token = authz.verify!(fragment_params[:id_token], stored_nonce)
-    session[:identifier] = id_token.subject
+    session[:openid_subject] = id_token.subject
     render json: id_token.raw_attributes, status: :ok
   end
 
