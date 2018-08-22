@@ -20,6 +20,17 @@ class AuthorizationsController < ApplicationController
     render json: id_token.raw_attributes, status: :ok
   end
 
+  # TODO: もう少し良い方法を考える
+  def after_login
+    user = User.find_by_sub(session[:openid_subject])
+
+    if user
+      redirect_to user and return
+    else
+      redirect_to new_user_url(user_params) and return
+    end
+  end
+
   private
 
   def authz
@@ -44,5 +55,10 @@ class AuthorizationsController < ApplicationController
 
   def fragment_params
     params.permit(:id_token, :state)
+  end
+
+  # TODO: Query Parameterに重要な情報を載せるのは良くないと思うので、おいおいSPAで完結させるようにする
+  def user_params
+    params.permit(:sub, :name, :preferred_username)
   end
 end

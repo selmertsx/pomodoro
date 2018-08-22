@@ -16,7 +16,10 @@ req.setRequestHeader('X-CSRF-Token', token);
 req.onreadystatechange = function (e) {
   if (req.readyState == 4) {
     if (req.status == 200) {
-      console.log("success!!");
+      const res =JSON.parse(req.response);
+      // 本来ならばSPAでゴリゴリやりたいが、僕の実装能力が足りないので、一旦Railsレイヤーに処理を戻す
+      const url = '//' + window.location.host + '/authorization/after_login?name=' + res["name"] + '&preferred_username=' + res["preferred_username"];
+      window.location.href = url;
     }
     else if (req.status == 400) {
       alert('There was an error processing the token')

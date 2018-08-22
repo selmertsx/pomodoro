@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resource :authorization, only: [:new, :create] do
     get :callback, on: :collection
+    get :after_login, on: :collection
   end
 
   namespace :api, format: 'json' do
