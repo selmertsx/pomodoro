@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+gem 'annotate'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'jbuilder', '~> 2.5'
 gem 'mysql2', '>= 0.3.18', '< 0.6.0'
@@ -21,9 +22,9 @@ group :development do
   gem 'annotate'
   gem 'foreman'
   gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'spring'
   gem 'pry'
   gem 'pry-byebug'
+  gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
 end
