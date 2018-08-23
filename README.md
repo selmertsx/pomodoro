@@ -11,3 +11,4 @@ docker exec -it pomodoro-web /usr/bin/openresty -s reload
 docker-compose run app rails db:migrate
 ```
 
+## Trello連携の動作確認
